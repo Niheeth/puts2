@@ -23,18 +23,51 @@ def take_inputs():
 @app.route('/')
 def index():
     return 'Usage;\n<Operation>?A=<V1>&B=<V2>\n'
-
-
 @app.route('/sub')
 def substraction():
     try:
         v1, v2 = take_inputs()
         result = v1 - v2
+    except ValueError:
+        warning_msg = take_inputs()
+        return warning_msg
+    else:
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
+        return '%.2f \n' % result
 @app.route('/add')
 def addition():
     try:
         v1, v2 = take_inputs()
         result = v1 + v2
+    except ValueError:
+        warning_msg = take_inputs()
+        return warning_msg
+    else:
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
+        return '%.2f \n' % result
+@app.route('/mul')
+def multiplication():
+    try:
+        v1, v2 = take_inputs()
+        result = v1 * v2
+    except ValueError:
+        warning_msg = take_inputs()
+        return warning_msg
+    else:
+        if float(result).is_integer():
+            result = int(result)
+            return '%d \n' % result
+        return '%.2f \n' % result
+
+@app.route('/div')
+def division():
+    try:
+        v1, v2 = take_inputs()
+        result = v1 / v2
     except ValueError:
         warning_msg = take_inputs()
         return warning_msg
